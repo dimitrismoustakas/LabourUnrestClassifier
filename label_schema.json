@@ -1,0 +1,62 @@
+{
+  "description": "Label schema for labour unrest classification (based on guide.md PoC)",
+  "fields": {
+    "strike_or_labour_unrest": {
+      "type": "string",
+      "required": true,
+      "enum": ["yes", "no"],
+      "description": "Is this article about a strike or labour unrest?"
+    },
+    "event_type": {
+      "type": "string",
+      "required": false,
+      "enum": ["strike", "work_stoppage", "protest", "lockout", "union_call", "negotiation", "workplace_accident", "other"],
+      "description": "Type of event (only if strike_or_labour_unrest=yes)",
+      "definitions": {
+        "strike": "Workers collectively refusing to work",
+        "work_stoppage": "Temporary halt of work (στάση εργασίας)",
+        "protest": "Demonstration or rally by workers",
+        "lockout": "Employer preventing workers from entering",
+        "union_call": "Union announcement calling for future action",
+        "negotiation": "Ongoing negotiations between workers/unions and employers",
+        "workplace_accident": "Worker injury or death at workplace",
+        "other": "Other labour-related event"
+      }
+    },
+    "sector": {
+      "type": "string",
+      "required": false,
+      "enum": ["transport", "education", "health", "manufacturing", "construction", "public_services", "retail", "food_industry", "energy", "telecommunications", "finance", "tourism", "agriculture", "maritime", "other"],
+      "description": "Economic sector affected"
+    },
+    "scope": {
+      "type": "string",
+      "required": false,
+      "enum": ["company", "local", "regional", "national", "general"],
+      "description": "Geographical/organizational scope of the event",
+      "definitions": {
+        "company": "Single company or establishment",
+        "local": "Single city or municipality",
+        "regional": "Multiple cities or a region",
+        "national": "Country-wide",
+        "general": "General strike across all sectors"
+      }
+    },
+    "action_date": {
+      "type": "string",
+      "required": false,
+      "format": "date",
+      "description": "Date when the action took/takes place (YYYY-MM-DD)"
+    },
+    "location": {
+      "type": "string",
+      "required": false,
+      "description": "City or region where the event occurred"
+    },
+    "primary_actor": {
+      "type": "string",
+      "required": false,
+      "description": "Main union, workers group, or company involved"
+    }
+  }
+}
